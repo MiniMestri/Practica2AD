@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]){
     
-    FILE *archivo;
+    
     
     char cadena[20];
     char linea[1000];
@@ -12,9 +12,11 @@ int main(int argc, char *argv[]){
     char texto[100];
     char nombre[30];
     char apellido[30];
-    char edad[2];
+    int opcion;
     
-
+    FILE *archivo;
+    
+    do{
     printf("Desea 'insertar' o 'leer' el archivo: \n");
     scanf("%s", cadena);
     
@@ -25,14 +27,11 @@ int main(int argc, char *argv[]){
         scanf("%s",nombre);
         printf("Introduce el apellido: \n");
         scanf("%s",apellido);
-        printf("Introduce la edad, \n");
-        scanf("%s",edad);
+
         
         strcpy(texto,nombre);
         strcat(texto,"\t");
         strcat(texto,apellido);
-        strcat(texto,"\t");
-        strcat(texto,edad);
         
         fputs(strcat(texto,"\n"),archivo);
         
@@ -43,15 +42,20 @@ int main(int argc, char *argv[]){
         archivo =fopen("bbdd.txt","r");
         
         while(fgets(linea,sizeof(linea),archivo)!=NULL){
-            printf("       NOMBRE  APELLIDO    \n");
             printf("Linea %i: %s ",incremento,linea);
             incremento++;
         }
     }else{
-        printf("ERROR");
-    }     
+        printf("Esa opcion no existe \n");
+    }
 
-    fclose(archivo);
+        fclose(archivo);
+        
+        printf("Desea salir?(0-SI ||1-NO) \n");
+        scanf("%i",&opcion);
+    }while(opcion==1);
+    
+    printf("GRACIAS POR PROBAR EL PROGRAMA DE MINIMESTRI :)");
     
     return 0;
 }
